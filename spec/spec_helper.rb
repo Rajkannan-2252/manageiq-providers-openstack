@@ -1,9 +1,13 @@
+<<<<<<< HEAD
 # This file is copied to spec/ when you run 'rails generate rspec:install'
+=======
+>>>>>>> 2e1af6a196322ff27de854b562e170662232f025
 if ENV['CI']
   require 'simplecov'
   SimpleCov.start
 end
 
+<<<<<<< HEAD
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
 require 'rspec/rails'
@@ -105,4 +109,25 @@ VCR.configure do |c|
   }
 
   # c.debug_logger = File.open(Rails.root.join("log", "vcr_debug.log"), "w")
+=======
+Dir[Rails.root.join("spec/shared/**/*.rb")].each { |f| require f }
+Dir[File.join(__dir__, "support/**/*.rb")].each { |f| require f }
+
+require "manageiq/providers/openstack"
+
+RSpec.configure do |config|
+  config.filter_run_excluding(:qpid_proton) unless ENV['CI'] || Gem.loaded_specs.key?("qpid_proton")
+end
+
+VCR.configure do |config|
+  config.ignore_hosts 'codeclimate.com' if ENV['CI']
+  config.cassette_library_dir = File.join(ManageIQ::Providers::Openstack::Engine.root, 'spec/vcr_cassettes')
+
+  fix_token_expires_at(config)
+
+  secrets = Rails.application.secrets
+  secrets.openstack.each_key do |secret|
+    config.define_cassette_placeholder(secrets.openstack_defaults[secret]) { secrets.openstack[secret] }
+  end
+>>>>>>> 2e1af6a196322ff27de854b562e170662232f025
 end

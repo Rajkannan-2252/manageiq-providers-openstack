@@ -1,4 +1,5 @@
 FactoryBot.define do
+<<<<<<< HEAD
   factory :ext_management_system,
           :class   => "ManageIQ::Providers::Vmware::InfraManager" do
     # The provider has to be set before the hostname/ipaddress sequences as in some cases these attributes
@@ -408,5 +409,12 @@ FactoryBot.define do
           :class   => "ManageIQ::Providers::Foreman::ProvisioningManager",
           :parent  => :provisioning_manager do
     provider :factory => :provider_foreman
+=======
+  factory :ems_openstack_cinder,
+          :aliases => ["manageiq/providers/openstack/storage_manager/cinder_manager"],
+          :class   => "ManageIQ::Providers::Openstack::StorageManager::CinderManager",
+          :parent  => :ems_cinder do
+    parent_manager :factory => :ems_openstack
+>>>>>>> 2e1af6a196322ff27de854b562e170662232f025
   end
 end

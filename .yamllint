@@ -1,8 +1,15 @@
 ---
 ignore: |
+<<<<<<< HEAD
   /lib/generators/**/templates/**
   /locale/**
   /vendor/**
+=======
+  /vendor/**
+  /spec/manageiq/**
+  /spec/tools/openstack_data/**
+  /spec/vcr_cassettes/**
+>>>>>>> 2e1af6a196322ff27de854b562e170662232f025
 
 extends: relaxed
 
@@ -10,4 +17,8 @@ rules:
   indentation:
     indent-sequences: false
   line-length:
+<<<<<<< HEAD
     max: 1000
+=======
+    max: 120
+>>>>>>> 2e1af6a196322ff27de854b562e170662232f025

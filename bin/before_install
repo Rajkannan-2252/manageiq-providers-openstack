@@ -1,5 +1,6 @@
 #!/bin/bash
 
+<<<<<<< HEAD
 set -e
 
 APP_ROOT=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." &>/dev/null && pwd)
@@ -43,4 +44,28 @@ if [ -n "$CI" ]; then
     cp -f "$APP_ROOT/Gemfile.lock.release" "$APP_ROOT/Gemfile.lock"
     echo
   fi
+=======
+if [ -n "$CI" ]; then
+  echo "== Installing system packages =="
+  sudo apt-get update
+  sudo apt-get install -y libcurl4-openssl-dev libqpid-proton11-dev
+  echo
+
+  # Enable the qpid_proton bundler group
+  [ -z "$BUNDLE_WITH" ] && bundle config with qpid_proton
+
+  echo
+fi
+
+gem_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." &>/dev/null && pwd)"
+spec_manageiq="$gem_root/spec/manageiq"
+
+if [ -n "$MANAGEIQ_REPO" ]; then
+  echo "== Symlinking spec/manageiq to $MANAGEIQ_REPO =="
+  rm -rf "$spec_manageiq"
+  ln -s "$(cd "$MANAGEIQ_REPO" &>/dev/null && pwd)" "$spec_manageiq"
+elif [ ! -d "$spec_manageiq" ]; then
+  echo "== Cloning manageiq sample app =="
+  git clone https://github.com/ManageIQ/manageiq.git --branch master --depth 1 "$spec_manageiq"
+>>>>>>> 2e1af6a196322ff27de854b562e170662232f025
 fi

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # /
 *.cmd
 *.pyc
@@ -106,3 +107,23 @@ bundler.d/*
 # yardoc
 /doc/
 .yardoc
+=======
+/.bundle/
+/.yardoc
+/Gemfile.lock
+/_yardoc/
+/config/secrets.yml
+/coverage/
+/doc/
+/pkg/
+/spec/reports/
+/tmp/
+
+.rubocop-*
+/bundler.d/*
+!/bundler.d/.keep
+/config/settings.local.yml
+/config/settings/*.local.yml
+/config/environments/*.local.yml
+/spec/manageiq
+>>>>>>> 2e1af6a196322ff27de854b562e170662232f025

@@ -1,3 +1,11 @@
+<<<<<<< HEAD
 --require spec_helper
 --color
 --order random
+=======
+--require manageiq/spec/spec_helper
+--require spec_helper
+--color
+--order random
+--exclude-pattern "spec/manageiq/**/*_spec.rb"
+>>>>>>> 2e1af6a196322ff27de854b562e170662232f025

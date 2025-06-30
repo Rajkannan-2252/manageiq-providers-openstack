@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+<<<<<<< HEAD
 require_relative '../lib/manageiq/environment'
 
 if ARGV.any?
@@ -40,3 +41,13 @@ Dir.chdir(ManageIQ::Environment::APP_ROOT) do
 
   ManageIQ::Environment.clear_logs_and_temp
 end
+=======
+
+require "pathname"
+
+gem_root = Pathname.new(__dir__).join("..")
+system(gem_root.join("bin/before_install").to_s)
+
+require gem_root.join("spec/manageiq/lib/manageiq/environment")
+ManageIQ::Environment.manageiq_plugin_setup(gem_root)
+>>>>>>> 2e1af6a196322ff27de854b562e170662232f025

@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+<<<<<<< HEAD
 require_relative '../lib/manageiq/environment'
 
 if ARGV.any?
@@ -42,3 +43,18 @@ Dir.chdir(ManageIQ::Environment::APP_ROOT) do
 
   ManageIQ::Environment.clear_logs_and_temp
 end
+=======
+require 'pathname'
+
+gem_root = Pathname.new(__dir__).join("..")
+
+if gem_root.join("spec/manageiq").symlink?
+  puts "== SKIPPING update of spec/manageiq because it is symlinked =="
+else
+  puts "== Updating manageiq sample app =="
+  system("git pull", :chdir => gem_root.join("spec/manageiq"))
+end
+
+require gem_root.join("spec/manageiq/lib/manageiq/environment").to_s
+ManageIQ::Environment.manageiq_plugin_update(gem_root)
+>>>>>>> 2e1af6a196322ff27de854b562e170662232f025
